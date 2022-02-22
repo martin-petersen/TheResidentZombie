@@ -1,0 +1,6 @@
+CREATE TABLE item(
+    id UUID NOT NULL,
+    item VARCHAR NOT NULL,
+    points INTEGER NOT NULL,
+    PRIMARY KEY (id)
+)

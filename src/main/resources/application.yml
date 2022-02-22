@@ -1,0 +1,8 @@
+spring:
+  banner:
+      location: banner.txt
+  jpa:
+    hibernate:
+      ddl-auto: none
+  flyway:
+    enabled: true
