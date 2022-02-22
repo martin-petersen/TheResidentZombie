@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.trz</groupId>
-    <artifactId>demo</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>the-resident-zombie</artifactId>
+    <version>latest</version>
     <name>the-resident-zombie</name>
-    <description>Demo project for codeminer42</description>
+    <description>Project</description>
     <properties>
         <java.version>11</java.version>
     </properties>
