@@ -5,8 +5,8 @@ services:
     image: postgres
     container_name: database
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
+      POSTGRES_USER: ${DB_PASSWORD}
+      POSTGRES_PASSWORD: ${DB_USERNAME}
       POSTGRES_DB: trz
     ports:
       - "5432:5432"
