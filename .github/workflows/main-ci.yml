@@ -58,6 +58,15 @@ jobs:
           TIME: "${{ steps.current-time.outputs.time }}"
         run: echo $TIME
 
+      - name: Run string replace
+        uses: frabert/replace-string-action@master
+        id: format-time
+        with:
+          pattern: 'T(.*)$'
+          string: "${{ steps.current-time.outputs.time }}"
+          replace-with: ''
+          flags: 'g'
+
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Build with Maven
@@ -74,4 +83,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: "martinpetersen/the-resident-zombie:latest,martinpetersen/the-resident-zombie:${{ steps.current-time.outputs.time }}"
+          tags: "martinpetersen/the-resident-zombie:latest,martinpetersen/the-resident-zombie:${{ steps.format-time.outputs.replaced }}"
