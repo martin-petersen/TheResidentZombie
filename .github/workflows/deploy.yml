@@ -1,0 +1,28 @@
+name: Deploy in Amazon AWS
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  deploy:
+    needs: docker-image
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy in EC2
+        env:
+          PRIVATE_KEY: ${{ secrets.AWS_KEY  }}
+          HOST: ${{ secrets.EC2_INSTANCE_HOST  }}
+          USERNAME: ${{ secrets.EC2_INSTANCE_USERNAME  }}
+          DB_USER: ${{ secrets.DB_USERNAME  }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD  }}
+
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USERNAME}@${HOST}
+          mkdir ~/apps
+          cd ~/apps
+          docker pull martinpetersen/the-resident-zombie:latest
+          docker run -p 8080:8080 martinpetersen/the-resident-zombie:latest
