@@ -21,6 +21,7 @@ jobs:
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USERNAME}@${HOST} "
           newgrp docker
+          rm -rf TheResidentZombie/
           git clone https://github.com/martin-petersen/TheResidentZombie.git &&
           cd TheResidentZombie/ &&
           PROFILE=prod DB_PASSWORD=${DB_PASSWORD} DB_USERNAME={DB_USER} DB_URL=${DB_URL} docker-compose pull &&
