@@ -21,5 +21,4 @@ jobs:
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USERNAME}@${HOST}
-          docker pull martinpetersen/the-resident-zombie:latest
-          docker run -p 8080:8080 -e SPRING_PROFILES_ACTIVE=prod -e DB_URL=$DB_USER -e DB_USERNAME=$DB_USER -e DB_PASSWORD=DB_PASSWORD martinpetersen/the-resident-zombie:latest
+          PROFILE=prod DB_PASSWORD=root DB_USERNAME=root DB_URL=jdbc:posgresql://db:5432/trz docker-compose pull && PROFILE=prod DB_PASSWORD=root DB_USERNAME=root DB_URL=jdbc:posgresql://db:5432/trz docker-compose down && PROFILE=prod DB_PASSWORD=root DB_USERNAME=root DB_URL=jdbc:posgresql://db:5432/trz docker-compose up -d
