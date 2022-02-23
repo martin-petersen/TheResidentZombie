@@ -21,7 +21,7 @@ jobs:
         run: mvn -B test --file pom.xml
 
   pr-build:
-    needs: test
+    needs: pr-test
     runs-on: ubuntu-latest
 
     steps:

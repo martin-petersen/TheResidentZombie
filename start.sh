@@ -1,1 +1,1 @@
-exec java -jar -Dspring.profiles.active=dev the-resident-zombie-latest.jar
+exec java -jar the-resident-zombie-latest.jar
