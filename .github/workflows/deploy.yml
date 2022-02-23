@@ -17,8 +17,8 @@ jobs:
           USERNAME: ${{ secrets.EC2_INSTANCE_USERNAME  }}
           DB_USER: ${{ secrets.DB_USERNAME  }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD  }}
-
+          DB_URL: ${{ secrets.DB_URL  }}
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USERNAME}@${HOST}
-          PROFILE=prod DB_PASSWORD=root DB_USERNAME=root DB_URL=jdbc:posgresql://db:5432/trz docker-compose pull && PROFILE=prod DB_PASSWORD=root DB_USERNAME=root DB_URL=jdbc:posgresql://db:5432/trz docker-compose down && PROFILE=prod DB_PASSWORD=root DB_USERNAME=root DB_URL=jdbc:posgresql://db:5432/trz docker-compose up -d
+          PROFILE=prod DB_PASSWORD=${DB_PASSWORD} DB_USERNAME={DB_USER} DB_URL=${DB_URL} docker-compose pull && PROFILE=prod DB_PASSWORD=${DB_PASSWORD} DB_USERNAME={DB_USER} DB_URL=${DB_URL} docker-compose down && PROFILE=prod DB_PASSWORD=${DB_PASSWORD} DB_USERNAME={DB_USER} DB_URL=${DB_URL} docker-compose up -d
