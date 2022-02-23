@@ -19,5 +19,4 @@ jobs:
           DB_URL: ${{ secrets.DB_URL  }}
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${USERNAME}@${HOST}
-          mkdir /tmp/app && cd /tmp/app && pwd
+          ssh -o StrictHostKeyChecking=no -i private_key ${USERNAME}@${HOST} "mkdir /tmp/app && cd /tmp/app && pwd"
