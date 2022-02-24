@@ -22,10 +22,6 @@ public class TradeDTO {
         return postTradeSenderItems;
     }
 
-    public void setPostTradeSenderItems(List<ItemDTO> postTradeSenderItems) {
-        this.postTradeSenderItems = postTradeSenderItems;
-    }
-
     public void setPostTradeSenderItems(ItemDTO postTradeSenderItems) {
         this.postTradeSenderItems.add(postTradeSenderItems);
     }
@@ -40,10 +36,6 @@ public class TradeDTO {
 
     public List<ItemDTO> getPostTradeReceiverItems() {
         return postTradeReceiverItems;
-    }
-
-    public void setPostTradeReceiverItems(List<ItemDTO> postTradeReceiverItems) {
-        this.postTradeReceiverItems = postTradeReceiverItems;
     }
 
     public void setPostTradeReceiverItems(ItemDTO postTradeReceiverItems) {
