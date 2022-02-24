@@ -24,9 +24,9 @@ jobs:
           rm -rf TheResidentZombie/
           git clone https://github.com/martin-petersen/TheResidentZombie.git &&
           cd TheResidentZombie/ &&
-          PSQL_PASSWORD=${PSQL_PASSWORD} PSQL_USERNAME=${PSQL_USER} PROFILE=prod DB_PASSWORD=${DB_PASSWORD} DB_USERNAME={DB_USER} DB_URL=${DB_URL} docker-compose pull &&
-          PSQL_PASSWORD=${PSQL_PASSWORD} PSQL_USERNAME=${PSQL_USER} PROFILE=prod DB_PASSWORD=${DB_PASSWORD} DB_USERNAME={DB_USER} DB_URL=${DB_URL} docker-compose down &&
-          PSQL_PASSWORD=${PSQL_PASSWORD} PSQL_USERNAME=${PSQL_USER} PROFILE=prod DB_PASSWORD=${DB_PASSWORD} DB_USERNAME={DB_USER} DB_URL=${DB_URL} docker-compose up -d
+          PSQL_PASSWORD=${PSQL_PASSWORD} PSQL_USERNAME=${PSQL_USER} PROFILE=prod DB_PASSWORD=${DB_PASSWORD} DB_USERNAME=${DB_USER} DB_URL=${DB_URL} docker-compose pull app &&
+          PSQL_PASSWORD=${PSQL_PASSWORD} PSQL_USERNAME=${PSQL_USER} PROFILE=prod DB_PASSWORD=${DB_PASSWORD} DB_USERNAME=${DB_USER} DB_URL=${DB_URL} docker-compose down &&
+          PSQL_PASSWORD=${PSQL_PASSWORD} PSQL_USERNAME=${PSQL_USER} PROFILE=prod DB_PASSWORD=${DB_PASSWORD} DB_USERNAME=${DB_USER} DB_URL=${DB_URL} docker-compose up -d
           "
 
 
