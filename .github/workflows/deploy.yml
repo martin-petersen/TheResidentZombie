@@ -14,19 +14,21 @@ jobs:
           PRIVATE_KEY: ${{ secrets.AWS_KEY  }}
           HOST: ${{ secrets.EC2_INSTANCE_HOST  }}
           USERNAME: ${{ secrets.EC2_INSTANCE_USERNAME  }}
-          DB_USER: ${{ secrets.DB_USERNAME  }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER  }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD  }}
+          PROFILE: ${{ secrets.PROFILE  }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD  }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME  }}
           DB_URL: ${{ secrets.DB_URL  }}
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USERNAME}@${HOST} "
-          newgrp docker
           rm -rf TheResidentZombie/
           git clone https://github.com/martin-petersen/TheResidentZombie.git &&
           cd TheResidentZombie/ &&
-          POSTGRES_USER=${DB_USER} POSTGRES_PASSWORD=${DB_PASSWORD} PROFILE=prod DB_PASSWORD=${DB_PASSWORD} DB_USERNAME=${DB_USER} DB_URL=${DB_URL} docker-compose pull app &&
-          POSTGRES_USER=${DB_USER} POSTGRES_PASSWORD=${DB_PASSWORD} PROFILE=prod DB_PASSWORD=${DB_PASSWORD} DB_USERNAME=${DB_USER} DB_URL=${DB_URL} docker-compose down &&
-          POSTGRES_USER=${DB_USER} POSTGRES_PASSWORD=${DB_PASSWORD} PROFILE=prod DB_PASSWORD=${DB_PASSWORD} DB_USERNAME=${DB_USER} DB_URL=${DB_URL} docker-compose up -d
+          POSTGRES_USER=${POSTGRES_USER} POSTGRES_PASSWORD=${POSTGRES_PASSWORD} PROFILE=${PROFILE} DB_USERNAME=${DB_USER} DB_PASSWORD=${DB_PASSWORD} DB_URL=${DB_URL} docker-compose pull &&
+          POSTGRES_USER=${POSTGRES_USER} POSTGRES_PASSWORD=${POSTGRES_PASSWORD} PROFILE=${PROFILE} DB_USERNAME=${DB_USER} DB_PASSWORD=${DB_PASSWORD} DB_URL=${DB_URL} docker-compose down &&
+          POSTGRES_USER=${POSTGRES_USER} POSTGRES_PASSWORD=${POSTGRES_PASSWORD} PROFILE=${PROFILE} DB_USERNAME=${DB_USER} DB_PASSWORD=${DB_PASSWORD} DB_URL=${DB_URL} docker-compose up -d
           "
 
 
